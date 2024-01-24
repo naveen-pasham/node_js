@@ -1,0 +1,11 @@
+//print hello world in terminal
+// I save this file as hello.js
+//got to vs code terminal then write node hello.js then enter it shows Hello World on screen
+//got to comand prompt in windows then run node  then write node hello.js then enter it shows Hello World on screen
+
+const hello="Hello World";
+console.log(hello);
+
+// to print hello world in text file
+const fs=require('fs');
+fs.writeFileSync("hello.txt","Hello World" );
