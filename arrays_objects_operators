@@ -1,0 +1,41 @@
+//transform array
+const arr = ['apple','oranges',' ','mango',' ','lemon'];
+console.log(arr.map(fruit =>{
+    if(fruit==' '){
+        fruit='empty string';
+    }
+    return fruit;
+}));
+
+//
+How is hobbies const and it still doesnt error out when we add new elements to the array as in the video.
+
+Ans: Arrays are refrence type. Refrences types are only store memory address where that array stored. When adding new element to the array then it doesn't change memory address. so, constant value is not change then it didn't show error. 
+
+//
+What according to you is spread opertor. Does spread operator create a new object or point to the same old object?
+
+Ans: Spread operator means it pulling out elements from arrays or objects. It just copying the array elements or object elements.
+
+//
+What is rest operator.
+
+Ans: Rest operator means it merging the two or more objects into one new object. That is it merging two or more arguments into like array form or object or any kind. 
+
+//outputs
+1) const obj1 = {'key1': 1}
+const obj2 = { ...obj1}
+if(obj2 === obj1){
+console.log('same objects')
+}
+else{
+console.log('different objects')
+}
+// out put : different objects
+2)
+const obj1 = {'key1': 1 , 'key2' : 2}
+const obj2 = { ...obj1, key1: 1000}
+console.log(obj1)
+console.log(obj2)
+//out put : {'key1': 1 , 'key2' : 2}
+            {'key1': 1000 , 'key2' : 2}
