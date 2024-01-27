@@ -1,0 +1,87 @@
+// clean up code
+
+// create server code server.js
+
+const http=require('http');
+const routes= require('./routes')
+const server=http.createServer(routes);
+server.listen(3000);
+
+// imported file code that is implimatation code file routes.js
+
+const fs=require('fs');
+const requestHandler= (req,res)=>{
+    const url=req.url;
+    const method=req.method;
+    if(url ==='/'){
+    
+        res.write('<html>');
+        res.write('<head><title>Enter Message</title></head>');
+        res.write('<body><form action="/message" method="POST"><input type="text" name="message"><button type="submit">Send</button></form></body>');
+        res.write('</html>');
+        return res.end(); 
+    }
+    if(url==='/message' && method==='POST'){
+
+        const body=[];
+        req.on('data', (chunk)=>{
+            console.log(chunk);
+            body.push(chunk);
+        });
+        return req.on('end', ()=>{  
+            const parsedbody= Buffer.concat(body).toString();
+            const message= parsedbody.split('=')[1];
+            //fs.writeFileSync('message.txt', message);  
+            fs.writeFile('message.txt', message, err=>{  
+                res.statusCode=302;
+                res.setHeader('Location', '/');
+                return res.end();
+            });
+        });
+
+    }
+    res.setHeader('Content-Type', 'text/html');
+    res.write('<html>');
+    res.write('<head><title>My First Page</title></head>');
+    res.write('<body><h1>Hello from my Node.js Server!</h1></body>');
+    res.write('</html>');
+    res.end(); 
+    
+};
+
+module.exports= requestHandler;
+
+/*
+also use export like below 
+1) 1st way
+module.exports={
+    handler: requesthandler,
+    someText: 'some hard coded text'
+}
+
+here export it as object so in server.js put chnages like below
+const http=require('http');
+const routes= require('./routes')
+const server=http.createServer(routes.handlers); // then it takes requestHandler function from routes.js
+server.listen(3000);
+
+or simply like below
+2)2nd way
+module.exports.handler=requestHandler;
+module.exports.someText='some hard coded text';
+
+or
+3) 3rd way
+exports.handler=requestHandler;
+exports.someText='some hard coded text';
+
+*/
+
+
+//
+Question: Did you understand event loop ? Please explain it in your words if you did.
+Ans: Event loop starts automatically by node when program starts. It handles event callbacks that contains fast finishing code. At bigining it checks any timers in the program or not if they occur it execute timers that is set time out, set interval callbacks.
+      Next it checks any pending callbacks that is any input/output related callbacks. for example reading or writing files. Next it enters into poll face. it is retrieve new Input/output events and execute their callbacks. If any timers occurs in that it jumps into timers execution.
+      Then it checks any setimmediate callbacks, if they occurs it execute them. Then it checks any close callbacks if they occurs it execute colose callbacks. for example if we use process.exit() it close the server.
+
+
