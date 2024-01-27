@@ -1,0 +1,46 @@
+// return response According to url
+
+const http=require('http');
+const server=http.createServer((req,res)=>{
+    const url=req.url;
+    if(url ==='/home'){
+        res.setHeader('Content-Type', 'text/html');
+        res.write('<html>');
+        res.write('<head><title>My First Page</title></head>');
+        res.write('<body><h1>Welcome home</h1></body>');
+        res.write('</html>');
+        return res.end(); 
+    } else if(url==='/about'){
+        res.setHeader('Content-Type', 'text/html');
+        res.write('<html>');
+        res.write('<head><title>My First Page</title></head>');
+        res.write('<body><h1>Welcome to About Us page</h1></body>');
+        res.write('</html>');
+        return res.end(); 
+
+    } else if(url==='/node'){
+        res.setHeader('Content-Type', 'text/html');
+        res.write('<html>');
+        res.write('<head><title>My First Page</title></head>');
+        res.write('<body><h1>Welcome to my Node Js project</h1></body>');
+        res.write('</html>');
+        return res.end(); 
+
+    }    
+});
+server.listen(3000);
+
+
+//Answres for the Questions
+  1) Explain the nodejs event driven architecture.
+  Ans: It first start the script then it parse the code and register variables and functions. Then an event loop stats. It never ends it keeps on running as long as event listeners registered. If we run process.exit then that server is end.
+  2)How can it basically scale to handle 1000 of requests a sec. What helps node JS even though it is single threaded?
+  Ans: Using event loop and asynchronous code node js handle 1000 of requests. With help of loop js handle requests even though it is single threaded.
+  3)What does process.exit do?
+  Ans: It end the server. Then it can't take requests and user can't get responses.
+  4)What does req.url , req.header and req.method contain?
+  Ans: req.url containing the currently requested URL path, req.header containing headers of http and req.method containing method of the request that can be get or post
+
+
+
+  
