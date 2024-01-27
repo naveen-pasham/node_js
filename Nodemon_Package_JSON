@@ -1,0 +1,34 @@
+1) Make a package.json file
+ in terminal run 'npm init' then it shows package name then enter shows version then enter write sime discription then enter keeps going give author name like put your name then enter then enter package.json file created
+
+2) Add a npm start and start-server script
+go to package.json file in script add  {"start": "node nodejsfiles/create_server.js", "start-server": "node nodejsfiles/create_server.js"}... then in terminal run 'npm strt' it running create_server.js file..
+   to run start-server  in termina write npm run start-server. because start is the inbuilt recognized keyword to run.
+
+3) Install the nodemon package. What problem does nodemon solve?
+   nodemon automatically restarts node application when it detects any changes in files or program.
+
+4) When would you use --save-dev and --save?
+ --save-dev use to install packages as developer dependency and --save used to install packages as production dependency
+
+5) Make your application restart whenever u save by following the youtuber.
+   if we don't want packages then delete node_modules folder if we want then run 'npm install' in terminal the it install package. if we change anything in file it automatically restart that and implement that changes automatically
+
+//my package.json
+{
+  "name": "sharpner",
+  "version": "1.0.0",
+  "description": "Complete Node.js Guide",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node nodejsfiles/create_server.js",
+    "start-server": "node nodejsfiles/create_server.js"
+  },
+  "author": "NAVEEN",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}
+
